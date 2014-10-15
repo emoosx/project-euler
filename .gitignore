@@ -1,0 +1,15 @@
+# Created by https://www.gitignore.io
+*.out
+
+### OCaml ###
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmi
+*.cmxs
+*.cmxa
+
