@@ -1,3 +1,4 @@
+questions.md
 # Created by https://www.gitignore.io
 *.out
 
@@ -13,3 +14,5 @@
 *.cmxs
 *.cmxa
 
+### Python ###
+*.pyc
