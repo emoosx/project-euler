@@ -24,9 +24,9 @@ grouped =  itertools.groupby(merge(triangulars(), pentagonals(), hexagonals()))
 
 count = 0
 for key, group in grouped:
-    if count == 3:
-        break
     g = list(group)
     if len(g) == 3:
-        print g
         count += 1
+        if count == 3:
+            print g[0]
+            break
