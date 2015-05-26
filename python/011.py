@@ -57,27 +57,34 @@ grid = [
        [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ]
 
-def get_four(grid, x, y, direction, no):
-    return reduce(operator.mul, (grid[x + direction[0]][y + direction[1]] for x in range(4)), 1)
+def get_four(grid, x, y, direction, no=4):
+    dx, dy = direction
 
-def cal_up(grid, i, j):
-    return reduce(operator.mul, (grid[i - x][j] for x in range(4)), 1)
+    if(x + (no-1) * dx >= len(grid)) or \
+      (y + (no-1) * dy >= len(grid[0])) or \
+      (y + (no-1) * dy <= 0):
+        return 0
 
-def cal_down(grid, i, j):
-    return reduce(operator.mul, (grid[i + x][j] for x in range(4)), 1)
+    for i in range(no):
+        print grid[x + i * dx][y + i * dy]
 
-def cal_right_diagonal(grid, i, j):
-    return reduce(operator.mul, (grid[i + x][j + x] for x in range(4)), 1)
+    return reduce(operator.mul, (grid[x + i*dx][y + i*dy] for i in range(no)), 1)
 
-def cal_left_diagonal(grid, i, j):
-    return reduce(operator.mul, (grid[i - x][j - x] for x in range(4)), 1)
+def get_local_max(grid, x, y):
+    return max(
+        get_four(grid, x, y, (0, 1)),
+        get_four(grid, x, y, (1, 0)),
+        get_four(grid, x, y, (1, 1)),
+        get_four(grid, x, y, (1, -1))
+    )
 
-def get_max(grid, i, j):
-    return max(cal_up(grid, i, j), cal_down(grid, i, j))
 
+print get_four(grid, 0, 0, (1, 0))
+# print get_four(grid, 0, 0, (1, 1))
+# print get_four(grid, 0, 0, (1, -1))
 
-def search(grid):
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-
+# def search(grid):
+    # max = 0
+    # for i in range(len(grid) - 4):
+        # for y in range(len(grid[0])):
 
