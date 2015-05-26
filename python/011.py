@@ -62,29 +62,22 @@ def get_four(grid, x, y, direction, no=4):
 
     if(x + (no-1) * dx >= len(grid)) or \
       (y + (no-1) * dy >= len(grid[0])) or \
-      (y + (no-1) * dy <= 0):
+      (y + (no-1) * dy < 0):
         return 0
-
-    for i in range(no):
-        print grid[x + i * dx][y + i * dy]
 
     return reduce(operator.mul, (grid[x + i*dx][y + i*dy] for i in range(no)), 1)
 
-def get_local_max(grid, x, y):
-    return max(
-        get_four(grid, x, y, (0, 1)),
-        get_four(grid, x, y, (1, 0)),
-        get_four(grid, x, y, (1, 1)),
-        get_four(grid, x, y, (1, -1))
-    )
+def get_local_max(grid):
+    largest = 0
+    for x in range(len(grid)):
+        for y in range(len(grid[0])):
+            largest =  max(
+                get_four(grid, x, y, (0, 1)),
+                get_four(grid, x, y, (1, 0)),
+                get_four(grid, x, y, (1, 1)),
+                get_four(grid, x, y, (1, -1)),
+                largest
+            )
+    return largest
 
-
-print get_four(grid, 0, 0, (1, 0))
-# print get_four(grid, 0, 0, (1, 1))
-# print get_four(grid, 0, 0, (1, -1))
-
-# def search(grid):
-    # max = 0
-    # for i in range(len(grid) - 4):
-        # for y in range(len(grid[0])):
-
+print get_local_max(grid)
