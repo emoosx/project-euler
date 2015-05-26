@@ -16,7 +16,3 @@ rotate = lambda s, r: s[-r:] + s[:-r]
 prime_rotations = lambda n:  map(int, [rotate(str(n), x + 1) for x in range(len(str(n)))])
 is_circular_prime = lambda n: reduce(lambda x, y: x and y,  map(is_prime, prime_rotations(n)), True)
 print len(filter(is_circular_prime, primes(1000000 - 1)))
-
-# print prime_rotations(35)
-# print is_prime(35)
-# print map(is_prime, prime_rotations(35))
