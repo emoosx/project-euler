@@ -14,7 +14,10 @@ forty-two) contains 23 letters and 115 (one hundred and fifteen) contains
 with British usage.
 """
 
-words = {
+import math
+
+numbers = {
+    0: 'zero',
     1: 'one',
     2: 'two',
     3: 'three',
@@ -34,6 +37,9 @@ words = {
     17: 'seventeen',
     18: 'eighteen',
     19: 'nineteen',
+}
+
+bigger = {
     20: 'twenty',
     30: 'thirty',
     40: 'forty',
@@ -46,4 +52,17 @@ words = {
     1000:'thousand'
 }
 
-def number()
+def digits(no, a=True):
+    return ' and ' + numbers[no] if a else numbers[no]
+
+def tens(no, default=''):
+    if no < 20:
+        return digits(no)
+    elif no < 100:
+        return default + bigger[no/10*10] + numbers[no%10] if no % 10 != 0 else default + bigger[no/10*10]
+    elif no < 1000:
+        return numbers[no/100] + " " + bigger[100] + tens(no%100, default=' and ') if no % 100 != 0 else numbers[no/100] + " " + bigger[100]
+    return 'one thousand'
+
+count = lambda x: len(''.join(tens(x).split()))
+print sum(count(x) for x in range(1, 1001))
