@@ -57,7 +57,7 @@ def digits(no, a=True):
 
 def tens(no, default=''):
     if no < 20:
-        return digits(no)
+        return default + digits(no, False)
     elif no < 100:
         return default + bigger[no/10*10] + numbers[no%10] if no % 10 != 0 else default + bigger[no/10*10]
     elif no < 1000:
