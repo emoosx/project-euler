@@ -1,1 +1,3 @@
-My project-euler solutions. An excuse to strengthen my OCaml skills.
+# Project Euler
+
+My solutions to [Project Euler](http://projecteuler.com "Project Euler") problems in different programming languages.
